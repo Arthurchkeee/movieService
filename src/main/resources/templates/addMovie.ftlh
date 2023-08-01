@@ -62,7 +62,7 @@
                             <div class="px-2 py-2 bg-dark u-round-sm u-shadow-lg">
                                 <div class="u-text-center text-white">
                                     <div class="u-flex u-justify-center u-gap-3">
-                                        <form method="post" action="/addMovie" enctype="application/json">
+                                        <form method="post" action="/addMovie" enctype="multipart/form-data">
                                             <div class="row level">
                                                 <div class="col-xs-3 level-item">
                                                     <p class="m-0">Название</p>
@@ -218,12 +218,12 @@
                                                     <p class="m-0">Премьера в мире</p>
                                                 </div>
                                                 <div class="col-xs-9 level-item">
-                                                    <input type="date" name="releaseDate" value="2017-3-21">
+                                                    <input type="date" name="releasedDate" value="2017-3-21">
                                                 </div>
                                                 <div class="space"></div>
 
                                             </div>
-                                            <button>send</button>
+                                            <input type="submit">
                                         </form>
                                     </div>
                                 </div>

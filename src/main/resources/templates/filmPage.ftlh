@@ -56,11 +56,8 @@
                                  src="https://deadline.com/wp-content/uploads/2023/04/barbie-BARBIE_VERT_TSR_W_TALENT_2764x4096_DOM_rgb.jpg?w=800"/>
                         </div>
                         <div>
-                            <h1 class="headline-3">Barbie</h1>
-                            <p class="lead">Based on the Barbie fashion dolls by Mattel, it is the first live-action
-                                Barbie film after numerous computer-animated direct-to-video and streaming television
-                                films. The film follows Barbie (Margot Robbie) and Ken (Ryan Gosling) on a journey of
-                                self-discovery following an existential crisis.</p>
+                            <h1 class="headline-3">${movie.title}</h1>
+                            <p class="lead">${movie.description}</p>
                         </div>
                     </div>
                 </div>
@@ -102,19 +99,18 @@
                                     <td>
                                         <div class="tag-container">
                                             <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                2023
+                                                ${movie.year}
                                             </div>
                                         </div>
                                     </td>
                                     <th>Страна</th>
                                     <td>
                                         <div class="tag-container">
-                                            <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                США
-                                            </div>
-                                            <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                Великобритания
-                                            </div>
+                                            <#list movie.country as country>
+                                                <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
+                                                    ${country}
+                                                </div>
+                                            </#list>
                                         </div>
                                     </td>
                                 </tr>
@@ -122,24 +118,21 @@
                                     <th>Жанр</th>
                                     <td>
                                         <div class="tag-container">
-                                            <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                Комедия
-                                            </div>
-                                            <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                Приключения
-                                            </div>
-
-                                            <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                Фэнтези
-                                            </div>
+                                            <#list movie.genre as genre>
+                                                <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
+                                                    ${genre}
+                                                </div>
+                                            </#list>
                                         </div>
                                     </td>
                                     <th>Режиссер</th>
                                     <td>
                                         <div class="tag-container">
-                                            <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                Грета Гервиг
-                                            </div>
+                                            <#list movie.director as director>
+                                                <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
+                                                    ${director}
+                                                </div>
+                                            </#list>
                                         </div>
                                     </td>
                                 </tr>
@@ -147,31 +140,21 @@
                                     <th>Сценарий</th>
                                     <td>
                                         <div class="tag-container">
-                                            <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                Грета Гервиг
-                                            </div>
-                                            <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                Ноа Баумбак
-                                            </div>
-
-                                            <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                Фэнтези
-                                            </div>
+                                            <#list movie.writer as writer>
+                                                <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
+                                                    ${writer}
+                                                </div>
+                                            </#list>
                                         </div>
 
                                     <th>Продюссер</th>
                                     <td>
                                         <div class="tag-container">
-                                            <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                Том Акерли
-                                            </div>
-                                            <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                Cate Adams
-                                            </div>
-
-                                            <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                Ноа Баумбак
-                                            </div>
+                                            <#list movie.producer as producer>
+                                                <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
+                                                    ${producer}
+                                                </div>
+                                            </#list>
                                         </div>
                                     </td>
                                 </tr>
@@ -179,20 +162,21 @@
                                     <th>Оператор</th>
                                     <td>
                                         <div class="tag-container">
-                                            <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                Родриго Прието
-                                            </div>
+                                            <#list movie.operator as operator>
+                                                <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
+                                                    ${operator}
+                                                </div>
+                                            </#list>
                                         </div>
                                     </td>
                                     <th>Композитор</th>
                                     <td>
                                         <div class="tag-container">
-                                            <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                Марк Ронсон
-                                            </div>
-                                            <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                Эндрю В. Блейкмор
-                                            </div>
+                                            <#list movie.composer as composer>
+                                                <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
+                                                    ${composer}
+                                                </div>
+                                            </#list>
                                         </div>
                                     </td>
                                 </tr>
@@ -200,23 +184,21 @@
                                     <th>Художник</th>
                                     <td>
                                         <div class="tag-container">
-                                            <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                Эндрю Макс Кан
-                                            </div>
-                                            <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                Дин Клегг
-                                            </div>
-                                            <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                Дэвид Доран
-                                            </div>
+                                            <#list movie.artist as artist>
+                                                <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
+                                                    ${artist}
+                                                </div>
+                                            </#list>
                                         </div>
                                     </td>
                                     <th>Монтаж</th>
                                     <td>
                                         <div class="tag-container">
-                                            <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                Ник Хюи
-                                            </div>
+                                            <#list movie.editor as editor>
+                                                <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
+                                                    ${editor}
+                                                </div>
+                                            </#list>
                                         </div>
                                     </td>
                                 </tr>
@@ -225,7 +207,7 @@
                                     <td>
                                         <div class="tag-container">
                                             <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                $100 000 000
+                                                $${movie.budget}
                                             </div>
                                         </div>
                                     </td>
@@ -233,7 +215,7 @@
                                     <td>
                                         <div class="tag-container">
                                             <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                $237 164 831
+                                                $${movie.USAFees}
                                             </div>
                                         </div>
                                     </td>
@@ -243,7 +225,7 @@
                                     <td>
                                         <div class="tag-container">
                                             <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                + $258 500 000 = $495 664 831
+                                                 $${movie.fees}
                                             </div>
                                         </div>
                                     </td>
@@ -251,7 +233,7 @@
                                     <td>
                                         <div class="tag-container">
                                             <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                19 июля 2023
+                                                ${movie.releasedDate}
                                             </div>
                                         </div>
                                     </td>
