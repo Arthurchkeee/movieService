@@ -90,9 +90,9 @@
                                                 </div>
                                                 <div class="col-xs-9 level-item input-control">
                                                     <select name="country" class="select" multiple>
-                                                    <option>Shibe</option>
-                                                    <option>Doggo</option>
-                                                    <option>Pupper</option>
+                                                        <option>Shibe</option>
+                                                        <option>Doggo</option>
+                                                        <option>Pupper</option>
                                                     </select>
                                                 </div>
                                                 <div class="space"></div>
@@ -102,9 +102,9 @@
                                                 </div>
                                                 <div class="col-xs-9 level-item input-control">
                                                     <select class="select" name="genre" multiple>
-                                                    <option>Shibe</option>
-                                                    <option>Doggo</option>
-                                                    <option>Pupper</option>
+                                                        <option>Shibe</option>
+                                                        <option>Doggo</option>
+                                                        <option>Pupper</option>
                                                     </select>
                                                 </div>
                                                 <div class="space"></div>
@@ -114,9 +114,9 @@
                                                 </div>
                                                 <div class="col-xs-9 level-item input-control">
                                                     <select class="select" name="director" multiple>
-                                                    <option>Shibe</option>
-                                                    <option>Doggo</option>
-                                                    <option>Pupper</option>
+                                                        <option>Shibe</option>
+                                                        <option>Doggo</option>
+                                                        <option>Pupper</option>
                                                     </select>
                                                 </div>
                                                 <div class="space"></div>
@@ -126,9 +126,9 @@
                                                 </div>
                                                 <div class="col-xs-9 level-item input-control">
                                                     <select class="select" name="writer" multiple>
-                                                    <option>Shibe</option>
-                                                    <option>Doggo</option>
-                                                    <option>Pupper</option>
+                                                        <option>Shibe</option>
+                                                        <option>Doggo</option>
+                                                        <option>Pupper</option>
                                                     </select>
                                                 </div>
                                                 <div class="space"></div>
@@ -138,9 +138,9 @@
                                                 </div>
                                                 <div class="col-xs-9 level-item input-control">
                                                     <select class="select" name="producer" multiple>
-                                                    <option>Shibe</option>
-                                                    <option>Doggo</option>
-                                                    <option>Pupper</option>
+                                                        <option>Shibe</option>
+                                                        <option>Doggo</option>
+                                                        <option>Pupper</option>
                                                     </select>
                                                 </div>
                                                 <div class="space"></div>
@@ -150,9 +150,9 @@
                                                 </div>
                                                 <div class="col-xs-9 level-item input-control">
                                                     <select class="select" name="operator" multiple>
-                                                    <option>Shibe</option>
-                                                    <option>Doggo</option>
-                                                    <option>Pupper</option>
+                                                        <option>Shibe</option>
+                                                        <option>Doggo</option>
+                                                        <option>Pupper</option>
                                                     </select>
                                                 </div>
                                                 <div class="space"></div>
@@ -162,9 +162,9 @@
                                                 </div>
                                                 <div class="col-xs-9 level-item input-control">
                                                     <select class="select" name="composer" multiple>
-                                                    <option>Shibe</option>
-                                                    <option>Doggo</option>
-                                                    <option>Pupper</option>
+                                                        <option>Shibe</option>
+                                                        <option>Doggo</option>
+                                                        <option>Pupper</option>
                                                     </select>
                                                 </div>
                                                 <div class="space"></div>
@@ -174,9 +174,9 @@
                                                 </div>
                                                 <div class="col-xs-9 level-item input-control">
                                                     <select class="select" name="artist" multiple>
-                                                    <option>Shibe</option>
-                                                    <option>Doggo</option>
-                                                    <option>Pupper</option>
+                                                        <option>Shibe</option>
+                                                        <option>Doggo</option>
+                                                        <option>Pupper</option>
                                                     </select>
                                                 </div>
                                                 <div class="space"></div>
@@ -186,9 +186,9 @@
                                                 </div>
                                                 <div class="col-xs-9 level-item input-control">
                                                     <select class="select" name="editor" multiple>
-                                                    <option>Shibe</option>
-                                                    <option>Doggo</option>
-                                                    <option>Pupper</option>
+                                                        <option>Shibe</option>
+                                                        <option>Doggo</option>
+                                                        <option>Pupper</option>
                                                     </select>
                                                 </div>
                                                 <div class="space"></div>
@@ -220,8 +220,12 @@
                                                 <div class="col-xs-9 level-item">
                                                     <input type="date" name="releasedDate" value="2017-3-21">
                                                 </div>
-                                                <div class="space"></div>
 
+                                                <div class="col-xs-9 level-item">
+                                                    <input name="poster" type="file">
+                                                </div>
+
+                                                <div class="space"></div>
                                             </div>
                                             <input type="submit">
                                         </form>

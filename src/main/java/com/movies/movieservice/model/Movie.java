@@ -37,4 +37,5 @@ public class Movie {
     private int budget;
     private int USAFees;
     private int fees;
+    private String filePath;
 }

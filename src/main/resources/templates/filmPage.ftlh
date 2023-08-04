@@ -19,7 +19,7 @@
     <div class="header header-clear u-unselectable header-animated px-0 px-2-md">
         <div class="header-brand">
             <div class="nav-item no-hover">
-                <a>
+                <a href="/findAllMovies">
                     <h6 class="tracking-tight">WatchFlicks</h6>
                 </a>
             </div>
@@ -53,7 +53,7 @@
                     <div class="u-flex u-items-center u-gap-4 u-flex-column u-gap-8-lg u-flex-row-md">
                         <div>
                             <img class="u-round-xs w-100p w-60p-sm w-auto-md u-shadow-lg"
-                                 src="https://deadline.com/wp-content/uploads/2023/04/barbie-BARBIE_VERT_TSR_W_TALENT_2764x4096_DOM_rgb.jpg?w=800"/>
+                                 src="${movie.filePath}">
                         </div>
                         <div>
                             <h1 class="headline-3">${movie.title}</h1>

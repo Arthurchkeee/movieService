@@ -46,5 +46,38 @@
             </div>
         </div>
     </div>
+    <section>
+        <div class="p-2 grid u-gap-4 u-text-center">
+            <#list movies as movie>
+                <div class="grid-c-4 grid-r-3">
+                    <div class="card card--slide-up">
+                        <div class="card__container">
+                            <div class="card__image"
+                                 style="background-image: url(${movie.filePath});"></div>
+                        </div>
+                        <div class="card__mobile-title">
+                            <div class="content">
+                                <div class="tile">
+                                    <div class="tile__container">
+                                        <a href="/movie/${movie.id}" class="tile__title">${movie.title}</a>
+                                        <p class="tile__subtitle">${movie.year}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card__body content">
+                            <p>${movie.description}</p>
+                        </div>
+                        <div class="card__footer content"><#list movie.director as director>${director} </#list>
+                            <form method="post" action="/delete" enctype="multipart/form-data">
+                                <input type="hidden" name="id" value="${movie.id}">
+                                <button class="btn-primary">DELETE</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </#list>
+        </div>
+    </section>
 </div>
 </body>
