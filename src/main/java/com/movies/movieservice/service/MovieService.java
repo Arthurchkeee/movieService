@@ -9,5 +9,4 @@ public interface MovieService {
     List<Movie> getAllMovies();
     Optional<Movie> getMovieById(String id);
     void addMovie(Movie movie);
-    void deleteMovie(String id);
-}
+    void deleteMovie(String id);}

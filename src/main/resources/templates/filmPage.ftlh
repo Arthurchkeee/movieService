@@ -233,7 +233,7 @@
                                     <td>
                                         <div class="tag-container">
                                             <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                ${movie.releasedDate}
+                                                ${movie.releasedDate?date}
                                             </div>
                                         </div>
                                     </td>

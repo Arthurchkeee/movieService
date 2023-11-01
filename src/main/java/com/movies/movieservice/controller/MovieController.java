@@ -22,8 +22,6 @@ public class MovieController {
     @Value("${upload.path}")
     private String uploadPath;
     @Autowired
-    private MovieRepo repo;
-    @Autowired
     private MovieService movieService;
 
     @PostMapping(value = "/addMovie")
@@ -31,12 +29,12 @@ public class MovieController {
         try {
             String fileName = file.getOriginalFilename();
             file.transferTo( new File(uploadPath +"/"+ fileName));
-            movie.setFilePath("/posters/" + fileName);
+            movie.setFilePath("/movieService/" + fileName);
             movieService.addMovie(movie);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return "addMovie";
+        return "redirect:findAllMovies";
     }
 
     @GetMapping("/addMovie")

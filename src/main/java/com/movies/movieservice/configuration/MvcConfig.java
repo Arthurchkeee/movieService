@@ -19,7 +19,7 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/posters/**").addResourceLocations("file:///"+uploadPath);
+        registry.addResourceHandler("/movieService/**").addResourceLocations("file:///"+uploadPath);
     }
 
 }
