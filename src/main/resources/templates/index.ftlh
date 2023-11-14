@@ -12,27 +12,12 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"/>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous" ></script>
 </head>
-<body>
-<div class="header header-fixed u-unselectable header-animated" style="background-color: rgba(0, 0, 0, 0.87)">
-    <div class="header-brand">
-        <div class="nav-item no-hover">
-            <a><h3 class="title text-white">Movie</h3></a>
-        </div>
-    </div>
-    <div class="header-nav" id="header-menu">
-        <div class="nav-item">
-            <a href="#">
-                <h6 class="title text-white">Top 250 Movies</h6>
-            </a>
-        </div>
-        <div class="nav-item">
-            <a href="#">
-                <h6 class="title text-white">Browse Movies by Genre</h6>
-            </a>
-        </div>
-    </div>
-</div>
-<div class="bg-yellow-100" style="width: 100%;height: 100%"></div>
+<body class="bg-yellow-100">
+<form method="post" action="/login">
+    <input type="text" name="username">
+    <input type="password" name="password">
+    <button type="submit">register</button>
+</form>
 
 </body>
 </html>
