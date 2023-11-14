@@ -9,10 +9,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 @ToString
 @Data
 @NoArgsConstructor
@@ -20,22 +21,21 @@ import java.util.List;
 @Document("Movie")
 public class Movie {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
     private String title;
     private String description;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date releasedDate;
     private String year;
-    private List<String> director;
-    private List<String> country;
-    private List<String> writer;
-    private List<String> genre;
-    private List<String> producer;
-    private List<String> operator;
-    private List<String> composer;
-    private List<String> artist;
-    private List<String> editor;
+    private Set<String> director = new HashSet<>();
+    private Set<String> country = new HashSet<>();
+    private Set<String> writer = new HashSet<>();
+    private Set<String> genre = new HashSet<>();
+    private Set<String> producer = new HashSet<>();
+    private Set<String> operator = new HashSet<>();
+    private Set<String> composer = new HashSet<>();
+    private Set<String> artist = new HashSet<>();
+    private Set<String> editor = new HashSet<>();
     private Long budget;
     private Long USAFees;
     private Long fees;

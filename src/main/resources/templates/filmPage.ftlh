@@ -19,7 +19,7 @@
     <div class="header header-clear u-unselectable header-animated px-0 px-2-md">
         <div class="header-brand">
             <div class="nav-item no-hover">
-                <a href="/findAllMovies">
+                <a href="/api/movies/findAllMovies">
                     <h6 class="tracking-tight">WatchFlicks</h6>
                 </a>
             </div>
@@ -110,7 +110,7 @@
                                                 <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
                                                     ${country}
                                                 </div>
-                                            </#list>
+                                           </#list>
                                         </div>
                                     </td>
                                 </tr>
@@ -225,7 +225,7 @@
                                     <td>
                                         <div class="tag-container">
                                             <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                 $${movie.fees}
+                                                $${movie.fees}
                                             </div>
                                         </div>
                                     </td>

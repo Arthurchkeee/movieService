@@ -59,7 +59,7 @@
                             <div class="content">
                                 <div class="tile">
                                     <div class="tile__container">
-                                        <a href="/movie/${movie.id}" class="tile__title">${movie.title}</a>
+                                        <a href="/movies/movie/${movie.id}" class="tile__title">${movie.title}</a>
                                         <p class="tile__subtitle">${movie.year}</p>
                                     </div>
                                 </div>
@@ -68,8 +68,8 @@
                         <div class="card__body content">
                             <p>${movie.description}</p>
                         </div>
-                        <div class="card__footer content"><#list movie.director as director>${director} </#list>
-                            <form method="post" action="/delete" enctype="multipart/form-data">
+                        <div class="card__footer content"><#list movie.director as director>${director}</#list>
+                            <form method="post" action="/movies/delete" enctype="multipart/form-data">
                                 <input type="hidden" name="id" value="${movie.id}">
                                 <button class="btn-primary">DELETE</button>
                             </form>

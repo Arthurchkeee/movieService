@@ -1,12 +1,9 @@
 package com.movies.movieservice.controller;
 
 import com.movies.movieservice.model.Movie;
-import com.movies.movieservice.repository.MovieRepo;
 import com.movies.movieservice.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,16 +11,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/movies")
 public class MovieController {
     @Value("${upload.path}")
     private String uploadPath;
     @Autowired
     private MovieService movieService;
-
     @PostMapping(value = "/addMovie")
     public String saveMovie(Movie movie, @RequestParam("poster") MultipartFile file) {
         try {
@@ -41,7 +37,6 @@ public class MovieController {
     public String addMovie(){
         return "addMovie";
     }
-
     @GetMapping("/findAllMovies")
     public String getMovies(Model model) {
         model.addAttribute("movies",movieService.getAllMovies());

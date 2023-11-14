@@ -62,7 +62,7 @@
                             <div class="px-2 py-2 bg-dark u-round-sm u-shadow-lg">
                                 <div class="u-text-center text-white">
                                     <div class="u-flex u-justify-center u-gap-3">
-                                        <form method="post" action="/addMovie" enctype="multipart/form-data">
+                                        <form method="post" action="/movies/addMovie" enctype="multipart/form-data">
                                             <div class="row level">
                                                 <div class="col-xs-3 level-item">
                                                     <p class="m-0">Название</p>

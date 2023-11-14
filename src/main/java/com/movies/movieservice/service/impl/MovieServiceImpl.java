@@ -1,7 +1,7 @@
 package com.movies.movieservice.service.impl;
 
 import com.movies.movieservice.model.Movie;
-import com.movies.movieservice.repository.MovieRepo;
+import com.movies.movieservice.repository.MovieRepository;
 import com.movies.movieservice.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,22 +14,22 @@ import java.util.Optional;
 public class MovieServiceImpl implements MovieService {
 
     @Autowired
-    private MovieRepo movieRepo;
+    private MovieRepository movieRepository;
     @Transactional
     public List<Movie> getAllMovies() {
-        return movieRepo.findAll();
+        return movieRepository.findAll();
     }
     @Transactional
     public Optional<Movie> getMovieById(String id){
-        return movieRepo.findById(id);
+        return movieRepository.findById(id);
     }
     @Transactional
     public void addMovie(Movie movie){
-        movieRepo.save(movie);
+        movieRepository.save(movie);
     }
 
     @Transactional
     public void deleteMovie(String id) {
-        movieRepo.deleteById(id);
+        movieRepository.deleteById(id);
     }
 }
