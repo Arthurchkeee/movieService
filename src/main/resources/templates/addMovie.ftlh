@@ -63,6 +63,7 @@
                                 <div class="u-text-center text-white">
                                     <div class="u-flex u-justify-center u-gap-3">
                                         <form method="post" action="/movies/addMovie" enctype="multipart/form-data">
+                                            <input type="hidden" value="${_csrf.token}" name="_csrf">
                                             <div class="row level">
                                                 <div class="col-xs-3 level-item">
                                                     <p class="m-0">Название</p>

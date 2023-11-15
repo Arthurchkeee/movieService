@@ -14,6 +14,7 @@
 </head>
 <body class="bg-yellow-100">
 <form method="post" action="/login">
+    <input type="hidden" value="${_csrf.token}" name="_csrf">
     <input type="text" name="username">
     <input type="password" name="password">
     <button type="submit">register</button>

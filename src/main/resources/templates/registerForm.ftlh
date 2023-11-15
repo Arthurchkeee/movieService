@@ -77,7 +77,7 @@
                                     <div class="form-group">
                                         <select class="select" name="authorities" multiple>
                                             <#list roles as role>
-                                                <option value="${role.id}">
+                                                <option value="${role.name.name()}">
                                                     ${role.name}
                                                 </option>
                                             </#list>

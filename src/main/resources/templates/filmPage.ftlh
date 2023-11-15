@@ -19,7 +19,7 @@
     <div class="header header-clear u-unselectable header-animated px-0 px-2-md">
         <div class="header-brand">
             <div class="nav-item no-hover">
-                <a href="/api/movies/findAllMovies">
+                <a href="/movies/findAllMovies">
                     <h6 class="tracking-tight">WatchFlicks</h6>
                 </a>
             </div>
