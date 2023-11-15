@@ -25,10 +25,13 @@ public class User {
     private String email;
     @DBRef
     private Set<Role> authorities=new HashSet<>();
+    @DBRef
+    private Set<Movie> watchlist=new HashSet<>();
 
-    public User(String username, String password, String email) {
+    public User(String username, String password, String email, Set<Role> authorities) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.authorities = authorities;
     }
 }

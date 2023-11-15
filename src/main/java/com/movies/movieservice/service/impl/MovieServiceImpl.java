@@ -2,6 +2,7 @@ package com.movies.movieservice.service.impl;
 
 import com.movies.movieservice.model.Movie;
 import com.movies.movieservice.repository.MovieRepository;
+import com.movies.movieservice.repository.UserRepository;
 import com.movies.movieservice.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

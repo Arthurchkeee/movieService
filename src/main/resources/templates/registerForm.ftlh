@@ -19,7 +19,7 @@
     <div class="header header-clear u-unselectable header-animated px-0 px-2-md">
         <div class="header-brand">
             <div class="nav-item no-hover">
-                <a href="/api/movies/findAllMovies">
+                <a href="/movies/findAllMovies">
                     <h6 class="tracking-tight">WatchFlicks</h6>
                 </a>
             </div>
@@ -40,9 +40,6 @@
                 <div class="nav-item">
                     <a href="#">Contact</a>
                 </div>
-                <div class="nav-item">
-                    <a class="btn btn-black btn--sm py-0" href="#">Sign In</a>
-                </div>
             </div>
         </div>
     </div>
@@ -57,31 +54,8 @@
                                 <label class="font-bold">Username</label>
                                 <div class="section-body">
                                     <div class="form-group">
-                                        <input class="input-contains-icon input-contains-icon input-contains-icon-left"
-                                               type="text" name="username" placeholder="Enter your username"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-1">
-                                <label class="font-bold">Email</label>
-                                <div class="section-body">
-                                    <div class="form-group">
-                                        <input class="input-contains-icon input-contains-icon input-contains-icon-left"
-                                               type="email" name="email" placeholder="Enter your username"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-1">
-                                <label class="font-bold">Role</label>
-                                <div class="section-body">
-                                    <div class="form-group">
-                                        <select class="select" name="authorities" multiple>
-                                            <#list roles as role>
-                                                <option value="${role.name.name()}">
-                                                    ${role.name}
-                                                </option>
-                                            </#list>
-                                        </select>
+                                        <input
+                                                type="text" name="username" placeholder="Enter your username"/>
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +68,32 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit">Sign in</button>
+                            <div class="mb-1">
+                                <label class="font-bold">Email</label>
+                                <div class="section-body">
+                                    <div class="form-group">
+                                        <input
+                                                type="email" name="email" placeholder="Enter your username"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-1">
+                                <label class="font-bold">Role</label>
+                                <div class="section-body">
+                                    <div class="form-group">
+                                        <select class="select" name="authorities" multiple>
+                                            <#list roles as role>
+                                                <option value="${role.id}">
+                                                    ${role.name}
+                                                </option>
+                                            </#list>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit">Sign up</button>
                         </form>
                     </div>
                 </div>

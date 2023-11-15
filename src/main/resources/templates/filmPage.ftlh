@@ -32,7 +32,7 @@
         <div class="header-nav" id="header-menu">
             <div class="nav-right text-sm">
                 <div class="nav-item">
-                    <a href="#">Watchlist</a>
+                    <a href="/movies//watchlist">Watchlist</a>
                 </div>
                 <div class="nav-item">
                     <a href="#">About</a>
@@ -41,7 +41,10 @@
                     <a href="#">Contact</a>
                 </div>
                 <div class="nav-item">
-                    <a class="btn btn-black btn--sm py-0" href="#">Sign In</a>
+                    <form action="/logout" method="post">
+                        <input class="btn btn-black btn--sm py-0" type="submit" value="Sign out"/>
+                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                    </form>
                 </div>
             </div>
         </div>
@@ -89,6 +92,11 @@
                         </div>
                     </div>
                 </div>
+                <form action="/movies/addToWatchlist" method="post">
+                    <input class="btn btn-black btn--sm py-0" type="submit" value="Add to watchlist"/>
+                    <input type="hidden" name="movie" value="${movie.id}">
+                    <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                </form>
                 <div>
                     <div class="frame__body">
                         <div class="px-2 py-2 bg-white u-round-sm u-shadow-lg">
