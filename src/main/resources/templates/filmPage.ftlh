@@ -32,7 +32,7 @@
         <div class="header-nav" id="header-menu">
             <div class="nav-right text-sm">
                 <div class="nav-item">
-                    <a href="/movies//watchlist">Watchlist</a>
+                    <a href="/movies/watchlist">Watchlist</a>
                 </div>
                 <div class="nav-item">
                     <a href="#">About</a>
