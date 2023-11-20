@@ -93,10 +93,10 @@
                                                     <p class="m-0">Страна</p>
                                                 </div>
                                                 <div class="col-xs-9 level-item input-control">
-                                                    <select name="country" class="select" multiple>
-                                                        <option>Shibe</option>
-                                                        <option>Doggo</option>
-                                                        <option>Pupper</option>
+                                                    <select name="country" size="3" class="select" multiple>
+                                                        <#list countries as country>
+                                                            <option value="${country.id}">${country.name}</option>
+                                                        </#list>
                                                     </select>
                                                 </div>
                                                 <div class="space"></div>
@@ -105,10 +105,10 @@
                                                     <p class="m-0">Жанр</p>
                                                 </div>
                                                 <div class="col-xs-9 level-item input-control">
-                                                    <select class="select" name="genre" multiple>
-                                                        <option>Shibe</option>
-                                                        <option>Doggo</option>
-                                                        <option>Pupper</option>
+                                                    <select class="select" size="3" name="genre" multiple>
+                                                        <#list genres as genre>
+                                                            <option value="${genre.id}">${genre.name}</option>
+                                                        </#list>
                                                     </select>
                                                 </div>
                                                 <div class="space"></div>

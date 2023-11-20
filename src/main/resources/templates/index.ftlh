@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html id="page">
+<html id="page" lang="ru">
 <head>
     <title>Getting Started with Cirrus</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>

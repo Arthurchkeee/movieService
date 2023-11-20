@@ -54,23 +54,31 @@
             <div class="col-2">
                 <div class="p-2 grid u-text-center">
                     <div class="grid-c-12 grid-r-12">
-                        <div class="bg-white u-shadow-lg u-round-xs">
+                        <div class="bg-white u-shadow-lg u-round-xl">
                             <div class="p-3">
-                                <label for="genre"><p class="font-black">Genre</p></label>
-                                <select id="genre" name="genre">
-                                    <option>1
-                                    </option>
-                                    <option>2
-                                    </option>
-                                </select>
-                                <div class="space"></div>
-                                <label for="country"><p class="font-black">Country</p></label>
-                                <select id="country" name="country">
-                                    <option>1
-                                    </option>
-                                    <option>2
-                                    </option>
-                                </select>
+                                <form method="get" action="/movies/findMoviesByFilter">
+                                    <p class="font-black">Filter</p>
+                                    <details class="accordion">
+                                        <summary class="accordion__summary">Genre</summary>
+                                        <select onchange="this.form.submit()" class="u-round-md" id="genre" name="genreFilter">
+                                            <option selected>select genre</option>
+                                            <#list genres as genre>
+                                                <option value="${genre.id}">${genre.name}
+                                                </option>
+                                            </#list>
+                                        </select>
+                                    </details>
+                                    <details class="accordion">
+                                        <summary class="accordion__summary">Country</summary>
+                                        <select onchange="this.form.submit()" class="u-round-md" id="country" name="countryFilter">
+                                            <option selected>select country</option>
+                                            <#list countries as country>
+                                                <option value="${country.id}">${country.name}
+                                                </option>
+                                            </#list>
+                                        </select>
+                                    </details>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -111,7 +119,7 @@
                 </div>
             </div>
         </div>
-        =
     </section>
 </div>
+
 </body>

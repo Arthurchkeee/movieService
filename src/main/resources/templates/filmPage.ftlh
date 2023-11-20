@@ -116,7 +116,7 @@
                                         <div class="tag-container">
                                             <#list movie.country as country>
                                                 <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                    ${country}
+                                                    ${country.name}
                                                 </div>
                                            </#list>
                                         </div>
@@ -128,7 +128,7 @@
                                         <div class="tag-container">
                                             <#list movie.genre as genre>
                                                 <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                    ${genre}
+                                                    ${genre.name}
                                                 </div>
                                             </#list>
                                         </div>

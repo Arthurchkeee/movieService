@@ -1,6 +1,5 @@
 package com.movies.movieservice.dto;
 
-import com.movies.movieservice.model.ERole;
 import com.movies.movieservice.model.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
