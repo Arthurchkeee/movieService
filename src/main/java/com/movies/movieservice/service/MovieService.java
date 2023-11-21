@@ -12,5 +12,5 @@ public interface MovieService {
     Optional<Movie> getMovieById(ObjectId id);
     void addMovie(Movie movie);
     void deleteMovie(ObjectId id);
-    List<Movie> findMovieByFilter(FindMovieByFilter findMovieByFilter);
+    List<Movie> findMovieByFilter(FindMovieByFilter findMovieByFilter) throws Exception;
 }

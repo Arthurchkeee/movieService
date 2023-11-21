@@ -1,8 +1,11 @@
 package com.movies.movieservice.service;
 
 
+import com.movies.movieservice.dto.SignInDto;
+import com.movies.movieservice.dto.SignUpDto;
 import com.movies.movieservice.model.Movie;
 import com.movies.movieservice.model.User;
+import jakarta.validation.Valid;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -14,10 +17,6 @@ public interface UserService {
     void save(User user);
 
     List<User> findAllUsers();
-    public static String getAuthenticationUserName() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return authentication.getName();
-    }
-    public void addMovieToWatchlist(Movie movie);
+    void addMovieToWatchlist(Movie movie);
 
 }

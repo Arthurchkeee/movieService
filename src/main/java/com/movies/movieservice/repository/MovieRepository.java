@@ -10,6 +10,8 @@ import org.springframework.data.mongodb.repository.Query;
 import java.util.List;
 
 public interface MovieRepository extends MongoRepository<Movie, ObjectId> {
-    @Query("{'country': ?0,'genre':  ?1}")
-    List<Movie> findMoviesByCountryOrGenre(ObjectId country, ObjectId genre);
+    List<Movie> findMoviesByCountryAndGenre(Country country, Genre genre);
+    List<Movie> findMoviesByGenre(Genre genre);
+
+    List<Movie> findMoviesByCountry(Country country);
 }

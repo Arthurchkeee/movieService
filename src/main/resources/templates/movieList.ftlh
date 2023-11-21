@@ -61,9 +61,9 @@
                                     <details class="accordion">
                                         <summary class="accordion__summary">Genre</summary>
                                         <select onchange="this.form.submit()" class="u-round-md" id="genre" name="genreFilter">
-                                            <option selected>select genre</option>
+                                            <option value="" selected>select genre</option>
                                             <#list genres as genre>
-                                                <option value="${genre.id}">${genre.name}
+                                                <option value="${genre.id.toHexString()}">${genre.name}
                                                 </option>
                                             </#list>
                                         </select>
@@ -71,9 +71,9 @@
                                     <details class="accordion">
                                         <summary class="accordion__summary">Country</summary>
                                         <select onchange="this.form.submit()" class="u-round-md" id="country" name="countryFilter">
-                                            <option selected>select country</option>
+                                            <option selected value="">select country</option>
                                             <#list countries as country>
-                                                <option value="${country.id}">${country.name}
+                                                <option value="${country.id.toHexString()}">${country.name}
                                                 </option>
                                             </#list>
                                         </select>

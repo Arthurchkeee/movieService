@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class FindMovieByFilter {
-    private Genre genreFilter=new Genre();
-    private Country countryFilter=new Country();
+    private Genre genreFilter;
+    private Country countryFilter;
 }

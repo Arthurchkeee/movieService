@@ -7,6 +7,7 @@ import com.movies.movieservice.model.Role;
 import com.movies.movieservice.model.User;
 import com.movies.movieservice.repository.RoleRepository;
 import com.movies.movieservice.repository.UserRepository;
+import com.movies.movieservice.service.AuthService;
 import com.movies.movieservice.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,15 +29,14 @@ import java.util.Set;
 @Controller
 public class AuthController {
     @Autowired
-    PasswordEncoder encoder;
+    AuthService authService;
     @Autowired
     UserService userService;
     @Autowired
     RoleRepository roleRepository;
     @Autowired
     UserRepository userRepository;
-    @Autowired
-    AuthenticationManager authenticationManager;
+
     @GetMapping("/login")
     public String login(){
         return "index";
@@ -49,11 +49,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public String authenticateUser(@Valid SignInDto loginRequest) {
-
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+        authService.authenticateUser(loginRequest);
 
 
         return "redirect:/movies/findAllMovies";
@@ -61,16 +57,7 @@ public class AuthController {
 
     @PostMapping("/signup")
     public String registerUser(@Valid SignUpDto signUpDto) throws Exception {
-        if (userService.findUserByUsername(signUpDto.getUsername()).isPresent()) {
-            throw new Exception("Error: Username is already taken!");
-        }
-
-        // Create new user's account
-        User user = new User(signUpDto.getUsername(),
-                encoder.encode(signUpDto.getPassword()),
-                signUpDto.getEmail(),signUpDto.getAuthorities());
-
-        userRepository.save(user);
+        authService.registerUser(signUpDto);
 
         return "redirect:signup?";
     }

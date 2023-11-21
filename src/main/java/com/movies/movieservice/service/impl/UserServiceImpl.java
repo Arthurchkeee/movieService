@@ -1,11 +1,16 @@
 package com.movies.movieservice.service.impl;
 
 
+import com.movies.movieservice.dto.SignInDto;
+import com.movies.movieservice.dto.SignUpDto;
 import com.movies.movieservice.model.Movie;
 import com.movies.movieservice.model.User;
 import com.movies.movieservice.repository.UserRepository;
+import com.movies.movieservice.service.AuthService;
 import com.movies.movieservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -17,6 +22,7 @@ import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
+
     @Autowired
     UserRepository userRepository;
     @Override
@@ -36,7 +42,7 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public void addMovieToWatchlist(Movie movie){
-        Optional<User> user= userRepository.findUserByUsername(UserService.getAuthenticationUserName());
+        Optional<User> user= userRepository.findUserByUsername(AuthService.getAuthenticationUserName());
         if (user.isPresent()){
             Set<Movie> watchlist=user.get().getWatchlist();
             watchlist.add(movie);
@@ -44,4 +50,5 @@ public class UserServiceImpl implements UserService {
         }
 
     }
+
 }

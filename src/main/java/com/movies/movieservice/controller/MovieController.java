@@ -4,10 +4,7 @@ import com.movies.movieservice.dto.FindMovieByFilter;
 import com.movies.movieservice.model.Movie;
 import com.movies.movieservice.model.User;
 import com.movies.movieservice.repository.UserRepository;
-import com.movies.movieservice.service.CountryService;
-import com.movies.movieservice.service.GenreService;
-import com.movies.movieservice.service.MovieService;
-import com.movies.movieservice.service.UserService;
+import com.movies.movieservice.service.*;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -60,7 +57,7 @@ public class MovieController {
     }
 
     @GetMapping("/findMoviesByFilter")
-    public String findMoviesByFilter(FindMovieByFilter findMovieByFilter,Model model) {
+    public String findMoviesByFilter(FindMovieByFilter findMovieByFilter,Model model) throws Exception {
         model.addAttribute("movies",movieService.findMovieByFilter(findMovieByFilter));
         model.addAttribute("countries", countryService.findAll());
         model.addAttribute("genres", genreService.findAll());
@@ -98,7 +95,7 @@ public class MovieController {
 
     @GetMapping("/watchlist")
     public String showWatchlist(Model model) {
-        Optional<User> user = userService.findUserByUsername(UserService.getAuthenticationUserName());
+        Optional<User> user = userService.findUserByUsername(AuthService.getAuthenticationUserName());
         user.ifPresent(value -> model.addAttribute("movies", value.getWatchlist()));
         model.addAttribute("countries", countryService.findAll());
         model.addAttribute("genres", genreService.findAll());

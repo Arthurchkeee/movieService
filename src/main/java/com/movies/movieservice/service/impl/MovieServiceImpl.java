@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class MovieServiceImpl implements MovieService {
@@ -39,7 +40,15 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public List<Movie> findMovieByFilter(FindMovieByFilter findMovieByFilter) {
-        return movieRepository.findMoviesByCountryOrGenre(findMovieByFilter.getCountryFilter().getId(),findMovieByFilter.getGenreFilter().getId());
+    public List<Movie> findMovieByFilter(FindMovieByFilter findMovieByFilter) throws Exception {
+        List<Movie> movieList;
+        if (findMovieByFilter.getCountryFilter() == null && findMovieByFilter.getGenreFilter() != null) {
+            movieList = movieRepository.findMoviesByGenre(findMovieByFilter.getGenreFilter());
+        } else if (findMovieByFilter.getCountryFilter() != null && findMovieByFilter.getGenreFilter() == null) {
+            movieList = movieRepository.findMoviesByCountry(findMovieByFilter.getCountryFilter());
+        } else if (findMovieByFilter.getCountryFilter() != null && findMovieByFilter.getGenreFilter() != null) {
+            movieList = movieRepository.findMoviesByCountryAndGenre(findMovieByFilter.getCountryFilter(), findMovieByFilter.getGenreFilter());
+        } else throw new Exception("Send filter with country or genre");
+        return movieList;
     }
 }
