@@ -1,5 +1,4 @@
 package com.movies.movieservice.service.impl;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import com.movies.movieservice.model.Country;
 import com.movies.movieservice.repository.CountryRepository;
@@ -14,7 +13,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import java.util.Arrays;
 import java.util.HashSet;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @SpringBootTest
 @DirtiesContext
 class CountyServiceImplTest {

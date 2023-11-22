@@ -2,11 +2,8 @@ package com.movies.movieservice.service.impl;
 
 import com.movies.movieservice.dto.SignInDto;
 import com.movies.movieservice.model.*;
-import com.movies.movieservice.repository.MovieRepository;
-import com.movies.movieservice.repository.RoleRepository;
-import com.movies.movieservice.repository.UserRepository;
+import com.movies.movieservice.repository.*;
 import com.movies.movieservice.service.AuthService;
-import com.movies.movieservice.service.MovieService;
 import com.movies.movieservice.service.UserService;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.AfterEach;
@@ -21,12 +18,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 @DirtiesContext
 class UserServiceImplTest {
@@ -40,8 +35,13 @@ class UserServiceImplTest {
     AuthService authService;
     @Autowired
     MovieRepository movieRepository;
+    @Autowired
+    CountryRepository countryRepository;
+    @Autowired
+    GenreRepository genreRepository;
     @BeforeEach
     void setUp() {
+
         roleRepository.saveAll(Arrays.asList(new Role(new ObjectId("65521f00636e7db7f10ca444"), ERole.ROLE_ADMIN),new Role(new ObjectId("65521f00636e7db7f10ca445"),ERole.ROLE_USER),new Role(new ObjectId("65521f00636e7db7f10ca446"),ERole.ROLE_MODERATOR)));
         User user=new User("bebra",new BCryptPasswordEncoder().encode("test"),"test@gmail.com",new HashSet<>(Arrays.asList(new Role(new ObjectId("65521f00636e7db7f10ca444"), ERole.ROLE_ADMIN),new Role(new ObjectId("65521f00636e7db7f10ca445"),ERole.ROLE_USER),new Role(new ObjectId("65521f00636e7db7f10ca446"),ERole.ROLE_MODERATOR))));
         userRepository.save(user);
@@ -55,7 +55,7 @@ class UserServiceImplTest {
 
     @Test
     void findUserByUsername() {
-        assertTrue(userService.findUserByUsername("test").isPresent());
+        assertTrue(userService.findUserByUsername("bebra").isPresent());
     }
 
     @Test
@@ -72,11 +72,14 @@ class UserServiceImplTest {
 
     @Test
     void addMovieToWatchlist() throws ParseException {
-        userRepository.findAll().forEach(System.out::println);
+        countryRepository.saveAll(new HashSet<>(Arrays.asList(new Country(new ObjectId("655b1de04d1febe1558079db"), "Albania"), new Country(new ObjectId("655b1de04d1febe1558079df"), "Antigua & Deps"), new Country(new ObjectId("655b1de04d1febe1558079e2"), "Australia"))));
+        genreRepository.saveAll(new HashSet<>(Arrays.asList(new Genre(new ObjectId("655b189f4d1febe1558079c6"), "Action"), new Genre(new ObjectId("655b189f4d1febe1558079cd"), "Sci-fi"), new Genre(new ObjectId("655b189f4d1febe1558079cf"), "Animation"))));
         Movie firstMovie = new Movie((ObjectId) null, "test", "test", new SimpleDateFormat("dd/MM/yyyy").parse("16/11/2023"), "2023-11-16", (Set<String>) new HashSet<>(Arrays.asList("Shibe", " Pupper")), new HashSet<>(Arrays.asList( new Country(new ObjectId("655b1de04d1febe1558079df"), "Antigua & Deps"), new Country(new ObjectId("655b1de04d1febe1558079e2"), "Australia"))), (Set<String>) new HashSet<>(Arrays.asList("Shibe", "Pupper")), new HashSet<>(Arrays.asList(new Genre(new ObjectId("655b189f4d1febe1558079c6"), "Action"), new Genre(new ObjectId("655b189f4d1febe1558079cd"), "Sci-fi"), new Genre(new ObjectId("655b189f4d1febe1558079cf"), "Animation"))), (Set<String>) new HashSet<>(Arrays.asList("Shibe", "Pupper")), (Set<String>) new HashSet<>(Arrays.asList("Shibe", "Pupper")), (Set<String>) new HashSet<>(Arrays.asList("Shibe", "Pupper")), (Set<String>) new HashSet<>(Arrays.asList("Shibe", "Pupper")), (Set<String>) new HashSet<>(Arrays.asList("Shibe", "Pupper")), 420L, 420L, 420L, (String) null);
         movieRepository.save(firstMovie);
-        authService.authenticateUser(new SignInDto("bebra",new BCryptPasswordEncoder().encode("test")));
+        authService.authenticateUser(new SignInDto("bebra","test"));
         userService.addMovieToWatchlist(firstMovie);
-        assertThat(userRepository.findUserByUsername("test").get().getWatchlist().size()).isEqualTo(1);
+        Set<Movie> movies=userRepository.findUserByUsername("bebra").get().getWatchlist();
+        assertThat(movies.size()).isEqualTo(1);
+        assertTrue(movies.contains(firstMovie));
     }
 }

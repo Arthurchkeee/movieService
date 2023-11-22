@@ -46,39 +46,11 @@
             </div>
         </div>
     </div>
-    <section class="u-center-alt">
-        <div class="content">
-            <div class="frame__body">
-                <div class="px-2 py-2 bg-dark u-round-sm u-shadow-lg">
-                    <div class="u-text-center text-white">
-                        <form method="post" action="/login" enctype="multipart/form-data">
-                            <input type="hidden" value="${_csrf.token}" name="_csrf">
-                            <div class="mb-1">
-                                <label class="font-bold">Username</label>
-                                <div class="section-body">
-                                    <div class="form-group">
-                                        <input
-                                               type="text" name="username" placeholder="Enter your username"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-1">
-                                <label class="font-bold">Password</label>
-                                <div class="section-body">
-                                    <div class="form-group">
-                                        <input type="password" class="form-group-input"
-                                               placeholder="Enter your password" name="password"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <button type="submit">Sign in</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <p>${status}</p>
+    <p>${message}</p>
+    <p>${timestamp?datetime}</p>
+
+
 </div>
 
 </body>

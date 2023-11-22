@@ -15,7 +15,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @DirtiesContext
 class GenreServiceImplTest {

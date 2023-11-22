@@ -34,7 +34,7 @@ public class MovieController {
     @Autowired
     private GenreService genreService;
 
-    @Secured({"ROLE_ADMIN", "ROLE_MODERATOR"})
+    @Secured(value = {"ROLE_ADMIN", "ROLE_MODERATOR"})
     @PostMapping(value = "/addMovie")
     public String saveMovie(Movie movie, @RequestParam("poster") MultipartFile file) {
         try {
@@ -48,7 +48,7 @@ public class MovieController {
         return "redirect:findAllMovies";
     }
 
-    @Secured({"ROLE_ADMIN", "ROLE_MODERATOR"})
+    @Secured(value = {"ROLE_ADMIN", "ROLE_MODERATOR"})
     @GetMapping("/addMovie")
     public String addMovie(Model model) {
         model.addAttribute("countries", countryService.findAll());
@@ -57,8 +57,8 @@ public class MovieController {
     }
 
     @GetMapping("/findMoviesByFilter")
-    public String findMoviesByFilter(FindMovieByFilter findMovieByFilter,Model model) throws Exception {
-        model.addAttribute("movies",movieService.findMovieByFilter(findMovieByFilter));
+    public String findMoviesByFilter(FindMovieByFilter findMovieByFilter, Model model) throws Exception {
+        model.addAttribute("movies", movieService.findMovieByFilter(findMovieByFilter));
         model.addAttribute("countries", countryService.findAll());
         model.addAttribute("genres", genreService.findAll());
         return "movieList";
@@ -73,8 +73,13 @@ public class MovieController {
     }
 
     @GetMapping("/movie/{id}")
-    public String getMovie(@PathVariable ObjectId id, Model model) {
+    public String getMovie(@PathVariable ObjectId id, Model model) throws Exception {
         Optional<Movie> movie = movieService.getMovieById(id);
+        if (movie.isPresent()) {
+            model.addAttribute("movie", movie.get());
+        } else {
+            throw new Exception("IOException, id="+id);
+        }
         movie.ifPresent(value -> model.addAttribute("movie", value));
         return "filmPage";
     }
