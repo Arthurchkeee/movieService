@@ -41,7 +41,6 @@ class UserServiceImplTest {
     GenreRepository genreRepository;
     @BeforeEach
     void setUp() {
-
         roleRepository.saveAll(Arrays.asList(new Role(new ObjectId("65521f00636e7db7f10ca444"), ERole.ROLE_ADMIN),new Role(new ObjectId("65521f00636e7db7f10ca445"),ERole.ROLE_USER),new Role(new ObjectId("65521f00636e7db7f10ca446"),ERole.ROLE_MODERATOR)));
         User user=new User("bebra",new BCryptPasswordEncoder().encode("test"),"test@gmail.com",new HashSet<>(Arrays.asList(new Role(new ObjectId("65521f00636e7db7f10ca444"), ERole.ROLE_ADMIN),new Role(new ObjectId("65521f00636e7db7f10ca445"),ERole.ROLE_USER),new Role(new ObjectId("65521f00636e7db7f10ca446"),ERole.ROLE_MODERATOR))));
         userRepository.save(user);
@@ -74,12 +73,21 @@ class UserServiceImplTest {
     void addMovieToWatchlist() throws ParseException {
         countryRepository.saveAll(new HashSet<>(Arrays.asList(new Country(new ObjectId("655b1de04d1febe1558079db"), "Albania"), new Country(new ObjectId("655b1de04d1febe1558079df"), "Antigua & Deps"), new Country(new ObjectId("655b1de04d1febe1558079e2"), "Australia"))));
         genreRepository.saveAll(new HashSet<>(Arrays.asList(new Genre(new ObjectId("655b189f4d1febe1558079c6"), "Action"), new Genre(new ObjectId("655b189f4d1febe1558079cd"), "Sci-fi"), new Genre(new ObjectId("655b189f4d1febe1558079cf"), "Animation"))));
-        Movie firstMovie = new Movie((ObjectId) null, "test", "test", new SimpleDateFormat("dd/MM/yyyy").parse("16/11/2023"), "2023-11-16", (Set<String>) new HashSet<>(Arrays.asList("Shibe", " Pupper")), new HashSet<>(Arrays.asList( new Country(new ObjectId("655b1de04d1febe1558079df"), "Antigua & Deps"), new Country(new ObjectId("655b1de04d1febe1558079e2"), "Australia"))), (Set<String>) new HashSet<>(Arrays.asList("Shibe", "Pupper")), new HashSet<>(Arrays.asList(new Genre(new ObjectId("655b189f4d1febe1558079c6"), "Action"), new Genre(new ObjectId("655b189f4d1febe1558079cd"), "Sci-fi"), new Genre(new ObjectId("655b189f4d1febe1558079cf"), "Animation"))), (Set<String>) new HashSet<>(Arrays.asList("Shibe", "Pupper")), (Set<String>) new HashSet<>(Arrays.asList("Shibe", "Pupper")), (Set<String>) new HashSet<>(Arrays.asList("Shibe", "Pupper")), (Set<String>) new HashSet<>(Arrays.asList("Shibe", "Pupper")), (Set<String>) new HashSet<>(Arrays.asList("Shibe", "Pupper")), 420L, 420L, 420L, (String) null);
+        Movie firstMovie = new Movie( null, "test", "test", new SimpleDateFormat("dd/MM/yyyy").parse("16/11/2023"), "2023-11-16", new HashSet<>(Arrays.asList("Shibe", " Pupper")), new HashSet<>(Arrays.asList( new Country(new ObjectId("655b1de04d1febe1558079df"), "Antigua & Deps"), new Country(new ObjectId("655b1de04d1febe1558079e2"), "Australia"))),  new HashSet<>(Arrays.asList("Shibe", "Pupper")), new HashSet<>(Arrays.asList(new Genre(new ObjectId("655b189f4d1febe1558079c6"), "Action"), new Genre(new ObjectId("655b189f4d1febe1558079cd"), "Sci-fi"), new Genre(new ObjectId("655b189f4d1febe1558079cf"), "Animation"))),  new HashSet<>(Arrays.asList("Shibe", "Pupper")),  new HashSet<>(Arrays.asList("Shibe", "Pupper")), new HashSet<>(Arrays.asList("Shibe", "Pupper")),  new HashSet<>(Arrays.asList("Shibe", "Pupper")), new HashSet<>(Arrays.asList("Shibe", "Pupper")), 420L, 420L, 420L,  null);
         movieRepository.save(firstMovie);
         authService.authenticateUser(new SignInDto("bebra","test"));
         userService.addMovieToWatchlist(firstMovie);
         Set<Movie> movies=userRepository.findUserByUsername("bebra").get().getWatchlist();
         assertThat(movies.size()).isEqualTo(1);
         assertTrue(movies.contains(firstMovie));
+    }
+
+    @Test
+    void findUsersByUsernameSubstring() {
+        User user=new User("bebra123",new BCryptPasswordEncoder().encode("test"),"test@gmail.com",new HashSet<>(Arrays.asList(new Role(new ObjectId("65521f00636e7db7f10ca444"), ERole.ROLE_ADMIN),new Role(new ObjectId("65521f00636e7db7f10ca445"),ERole.ROLE_USER),new Role(new ObjectId("65521f00636e7db7f10ca446"),ERole.ROLE_MODERATOR))));
+        User user1=new User("123",new BCryptPasswordEncoder().encode("test"),"test@gmail.com",new HashSet<>(Arrays.asList(new Role(new ObjectId("65521f00636e7db7f10ca444"), ERole.ROLE_ADMIN),new Role(new ObjectId("65521f00636e7db7f10ca445"),ERole.ROLE_USER),new Role(new ObjectId("65521f00636e7db7f10ca446"),ERole.ROLE_MODERATOR))));
+        userRepository.saveAll(Arrays.asList(user,user1));
+        assertThat(userService.findUsersByUsernameSubstring("bebra").size()).isEqualTo(2);
+        assertThat(userService.findUsersByUsernameSubstring("123").size()).isEqualTo(2);
     }
 }

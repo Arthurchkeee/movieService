@@ -24,6 +24,7 @@ public class User {
     @Indexed(unique = true)
     private String username;
     private String password;
+    @Indexed(unique = true)
     private String email;
     @DBRef
     private Set<Role> authorities=new HashSet<>();

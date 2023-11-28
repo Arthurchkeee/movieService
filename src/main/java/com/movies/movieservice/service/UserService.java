@@ -18,5 +18,6 @@ public interface UserService {
 
     List<User> findAllUsers();
     void addMovieToWatchlist(Movie movie);
+    List<User> findUsersByUsernameSubstring(String usernameSubstring);
 
 }
