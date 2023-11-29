@@ -10,4 +10,6 @@ public interface FriendService {
     void sendFriendRequest(User recipient);
     Set<User> friendList();
     void acceptFriendRequest(FriendRequest friendRequest);
+    List<FriendRequest> getUserFriendRequests();
+    void rejectFriendRequest(FriendRequest friendRequest);
 }

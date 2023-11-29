@@ -42,7 +42,7 @@ public class FriendServiceImpl implements FriendService {
         Optional<User> currentUser = userRepository.findUserByUsername(
                 AuthService.getAuthenticationUserName());
         if (currentUser.isPresent()) {
-            List<FriendRequest> requests = friendRequestRepository.findFriendRequestsByRequesterOrRecipientAndStatus(currentUser.get(), currentUser.get(), friendRequestStatusRepository.findByName(EFriendRequestStatus.ACCEPTED));
+            List<FriendRequest> requests = friendRequestRepository.findFriendRequestsByRequesterOrRecipientAndStatus(currentUser.get().getId(), currentUser.get().getId(), friendRequestStatusRepository.findByName(EFriendRequestStatus.ACCEPTED).getId());
             requests.forEach(friendRequest -> {
                 if (currentUser.get().equals(friendRequest.getRequester())) {
                     friendship.add(friendRequest.getRecipient());
@@ -59,6 +59,22 @@ public class FriendServiceImpl implements FriendService {
     @Override
     public void acceptFriendRequest(FriendRequest friendRequest) {
         friendRequest.setStatus(friendRequestStatusRepository.findByName(EFriendRequestStatus.ACCEPTED));
+        friendRequestRepository.save(friendRequest);
+    }
+
+    @Override
+    public List<FriendRequest> getUserFriendRequests() {
+        if (userRepository.findUserByUsername(AuthService.getAuthenticationUserName()).isPresent()) {
+            return friendRequestRepository.findFriendRequestsByRecipientAndStatus(userRepository.findUserByUsername(AuthService.getAuthenticationUserName()).get(), friendRequestStatusRepository.findByName(EFriendRequestStatus.REQUESTED));
+        } else
+            throw new RuntimeException("This user doesn't exist");
+
+    }
+
+    @Override
+    @Transactional
+    public void rejectFriendRequest(FriendRequest friendRequest) {
+        friendRequest.setStatus(friendRequestStatusRepository.findByName(EFriendRequestStatus.REJECTED));
         friendRequestRepository.save(friendRequest);
     }
 }
