@@ -17,8 +17,12 @@
                 <div class="nav-item">
                     <a href="/movies/watchlist">Watchlist</a>
                 </div>
-                <div class="nav-item">
-                    <a href="/friends/friendList">Friends</a>
+                <div class="nav-item has-sub toggle-hover" id="left-dropdown">
+                    <a class="nav-dropdown-link">Friends</a>
+                    <ul class="dropdown-menu dropdown-animated" role="menu">
+                        <li role="menu-item"><a href="/friends/friendList">Friend List</a></li>
+                        <li role="menu-item"><a href="/friends/getUserFriendRequests">Friend Requests</a></li>
+                    </ul>
                 </div>
                 <div class="nav-item">
                     <a href="#">About</a>
@@ -27,7 +31,7 @@
                     <a href="#">Contact</a>
                 </div>
                 <div class="nav-item">
-                    <a class="btn btn-black btn--sm py-0" href="/signup">Sign Up</a>
+                    <a class="btn btn-black btn--sm py-0" href="/logout">Log Out</a>
                 </div>
             </div>
         </div>

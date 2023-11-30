@@ -20,34 +20,48 @@
     <@h.header></@h.header>
     <section>
         <div class="content">
-            <form action="/friends/findUserByUsernameSubstring" method="get">
-                <input name="usernameSubstring" type="name" value="John Doe"/>
-            </form>
-            <#list friendRequests as friendRequest>
-                <div class="tile">
-                    <div class="tile__icon">
-                        <div class="avatar text-gray-000" data-text='Aa'></div>
+            <div class="btn-group btn-group-fill u-center">
+                <a href="/friends/getUserFriendRequests">
+                    <button class="bg-orange-200 text-orange-700">Input Friend Requests</button>
+                </a>
+                <a href="/friends/getOutputFriendRequests">
+                    <button class="bg-orange-200 text-orange-700">Output Friend Requests</button>
+                </a>
+            </div>
+            <#if friendRequests??>
+                <#list friendRequests as friendRequest>
+                    <div class="tile">
+                        <div class="tile__icon">
+                            <div class="avatar text-gray-000" data-text='Aa'></div>
+                        </div>
+                        <#if springMacroRequestContext.requestUri?contains("/getUserFriendRequests")>
+                            <div class="tile__container">
+                                <p class="tile__title m-0">${friendRequest.requester.username}</p>
+                                <p class="tile__subtitle m-0">${friendRequest.requester.email}</p>
+                            </div>
+                            <div class="tile__buttons m-0">
+                                <form method="post" action="/friends/acceptFriendRequest">
+                                    <input type="hidden" value="${_csrf.token}" name="_csrf">
+                                    <input type="hidden" value="${friendRequest.id}" name="friendRequest">
+                                    <button class="btn-primary btn--sm uppercase">Accept</button>
+                                </form>
+                            </div>
+                        <#else>
+                            <div class="tile__container">
+                                <p class="tile__title m-0">${friendRequest.recipient.username}</p>
+                                <p class="tile__subtitle m-0">${friendRequest.recipient.email}</p>
+                            </div>
+                        </#if>
+                        <div class="tile__buttons m-0">
+                            <form method="post" action="/friends/rejectFriendRequest">
+                                <input type="hidden" value="${_csrf.token}" name="_csrf">
+                                <input type="hidden" value="${friendRequest.id}" name="friendRequest">
+                                <button class="btn-primary btn--sm uppercase">Reject</button>
+                            </form>
+                        </div>
                     </div>
-                    <div class="tile__container">
-                        <p class="tile__title m-0">${friendRequest.requester.username}</p>
-                        <p class="tile__subtitle m-0">${friendRequest.requester.email}</p>
-                    </div>
-                    <div class="tile__buttons m-0">
-                        <form method="post" action="/friends/acceptFriendRequest">
-                            <input type="hidden" value="${_csrf.token}" name="_csrf">
-                            <input type="hidden" value="${friendRequest.id}" name="friendRequest">
-                            <button class="btn-primary btn--sm uppercase">Accept</button>
-                        </form>
-                    </div>
-                    <div class="tile__buttons m-0">
-                        <form method="post" action="/friends/rejectFriendRequest">
-                            <input type="hidden" value="${_csrf.token}" name="_csrf">
-                            <input type="hidden" value="${friendRequest.id}" name="friendRequest">
-                            <button class="btn-primary btn--sm uppercase">Reject</button>
-                        </form>
-                    </div>
-                </div>
-            </#list>
+                </#list>
+            </#if>
         </div>
     </section>
 </div>

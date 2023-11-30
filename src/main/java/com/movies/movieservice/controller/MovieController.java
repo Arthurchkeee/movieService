@@ -1,7 +1,9 @@
 package com.movies.movieservice.controller;
 
 import com.movies.movieservice.dto.FindMovieByFilter;
+import com.movies.movieservice.dto.SendReviewDto;
 import com.movies.movieservice.model.Movie;
+import com.movies.movieservice.model.Review;
 import com.movies.movieservice.model.User;
 import com.movies.movieservice.repository.UserRepository;
 import com.movies.movieservice.service.*;
@@ -33,6 +35,8 @@ public class MovieController {
     private CountryService countryService;
     @Autowired
     private GenreService genreService;
+    @Autowired
+    private ReviewService reviewService;
 
     @Secured(value = {"ROLE_ADMIN", "ROLE_MODERATOR"})
     @PostMapping(value = "/addMovie")
@@ -105,5 +109,16 @@ public class MovieController {
         model.addAttribute("countries", countryService.findAll());
         model.addAttribute("genres", genreService.findAll());
         return "movieList";
+    }
+    @PostMapping("/sendReview")
+    public String sendReview( SendReviewDto sendReviewDto){
+        Review review=new Review();
+        review.setMovie(sendReviewDto.getMovie());
+        review.setTextOfReview(sendReviewDto.getTextOfReview());
+        review.setTitle(sendReviewDto.getTitle());
+        review.setMark(sendReviewDto.getMark());
+        review.setUser(userService.findUserByUsername(AuthService.getAuthenticationUserName()).get());
+        reviewService.saveReview(review);
+        return "redirect:findAllMovies";
     }
 }

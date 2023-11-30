@@ -33,6 +33,12 @@
                             <p class="lead">${movie.description}</p>
                         </div>
                     </div>
+                    <div class="space"></div>
+                    <form action="/movies/addToWatchlist" method="post">
+                        <input class="btn btn-black btn--sm py-0" type="submit" value="Add to watchlist"/>
+                        <input type="hidden" name="movie" value="${movie.id}">
+                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                    </form>
                 </div>
             </div>
         </div>
@@ -62,11 +68,6 @@
                         </div>
                     </div>
                 </div>
-                <form action="/movies/addToWatchlist" method="post">
-                    <input class="btn btn-black btn--sm py-0" type="submit" value="Add to watchlist"/>
-                    <input type="hidden" name="movie" value="${movie.id}">
-                    <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                </form>
                 <div>
                     <div class="frame__body">
                         <div class="px-2 py-2 bg-white u-round-sm u-shadow-lg">
@@ -88,7 +89,7 @@
                                                 <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
                                                     ${country.name}
                                                 </div>
-                                           </#list>
+                                            </#list>
                                         </div>
                                     </td>
                                 </tr>
@@ -238,6 +239,47 @@
                             </table>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="content">
+            <a href="#in-modal">
+                <button class="px-3">Zoom In</button>
+            </a>
+            <div class="modal  modal-animated--zoom-in" id="in-modal"><a href="#searchModalDialog"
+                                                                         class="modal-overlay close-btn"
+                                                                         aria-label="Close"></a>
+                <div class="modal-content" role="document">
+                    <div class="modal-header u-flex u-justify-space-between">
+                        <div class="modal-title">Modal Dialog</div>
+                        <a href="#components" aria-label="Close"><span class="icon"><svg aria-hidden="true"
+                                                                                         focusable="false"
+                                                                                         data-prefix="fas"
+                                                                                         data-icon="times"
+                                                                                         class="svg-inline--fa fa-times fa-w-11 fa-wrapper"
+                                                                                         role="img"
+                                                                                         xmlns="http://www.w3.org/2000/svg"
+                                                                                         viewBox="0 0 352 512"><path
+                                            fill="currentColor"
+                                            d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg></span></a>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/movies/sendReview" method="post">
+                            <input type="text" name="title">
+                            <textarea name="textOfReview"></textarea>
+                            <input type="hidden" name="movie" value="${movie.id}">
+                            <input type="range" name="mark" min="0" max="10" step="1">
+                            <input type="hidden" value="${_csrf.token}" name="_csrf">
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer u-text-right"><a href="#components" class="u-inline-block mr-1">
+                            <button class="btn--sm">Cancel</button>
+                        </a><a href="#components" class="u-inline-block">
+                            <button class="btn-primary btn--sm">Share</button>
+                        </a></div>
                 </div>
             </div>
         </div>

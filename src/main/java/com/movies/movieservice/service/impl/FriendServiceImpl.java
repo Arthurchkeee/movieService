@@ -77,4 +77,12 @@ public class FriendServiceImpl implements FriendService {
         friendRequest.setStatus(friendRequestStatusRepository.findByName(EFriendRequestStatus.REJECTED));
         friendRequestRepository.save(friendRequest);
     }
+
+    @Override
+    public List<FriendRequest> getOutputFriendRequest() {
+        if (userRepository.findUserByUsername(AuthService.getAuthenticationUserName()).isPresent()) {
+            return friendRequestRepository.findFriendRequestsByRequesterAndStatus(userRepository.findUserByUsername(AuthService.getAuthenticationUserName()).get(), friendRequestStatusRepository.findByName(EFriendRequestStatus.REQUESTED));
+        } else
+            throw new RuntimeException("This user doesn't exist");
+    }
 }

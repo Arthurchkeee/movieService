@@ -12,4 +12,5 @@ public interface FriendService {
     void acceptFriendRequest(FriendRequest friendRequest);
     List<FriendRequest> getUserFriendRequests();
     void rejectFriendRequest(FriendRequest friendRequest);
+    List<FriendRequest> getOutputFriendRequest();
 }

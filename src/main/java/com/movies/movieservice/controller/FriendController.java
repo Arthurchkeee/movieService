@@ -56,4 +56,9 @@ public class FriendController {
         model.addAttribute("friendRequests", friendService.getUserFriendRequests());
         return "friendRequests";
     }
+    @GetMapping("/getOutputFriendRequests")
+    public String getOutputFriendRequest(Model model){
+        model.addAttribute("friendRequests",friendService.getOutputFriendRequest());
+        return "friendRequests";
+    }
 }
