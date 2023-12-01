@@ -8,6 +8,7 @@ import com.movies.movieservice.model.User;
 import com.movies.movieservice.repository.RoleRepository;
 import com.movies.movieservice.repository.UserRepository;
 import com.movies.movieservice.service.AuthService;
+import com.movies.movieservice.service.ReviewService;
 import com.movies.movieservice.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -35,7 +37,7 @@ public class AuthController {
     @Autowired
     RoleRepository roleRepository;
     @Autowired
-    UserRepository userRepository;
+    ReviewService reviewService;
 
     @GetMapping("/login")
     public String login(){
@@ -60,5 +62,12 @@ public class AuthController {
         authService.registerUser(signUpDto);
 
         return "redirect:signup?";
+    }
+    @GetMapping("/user/{user}")
+    public String getUserPage(@PathVariable User user,Model model){
+        System.out.println(user);
+        model.addAttribute("user",user);
+        model.addAttribute("reviews",reviewService.findReviewsByUser(user));
+        return "userPage";
     }
 }

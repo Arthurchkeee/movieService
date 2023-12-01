@@ -80,11 +80,12 @@ public class MovieController {
     public String getMovie(@PathVariable ObjectId id, Model model) throws Exception {
         Optional<Movie> movie = movieService.getMovieById(id);
         if (movie.isPresent()) {
+            reviewService.calculateRating(movie.get());
             model.addAttribute("movie", movie.get());
+            model.addAttribute("reviews",reviewService.findReviewsByMovie(movie.get()));
         } else {
             throw new Exception("IOException, id="+id);
         }
-        movie.ifPresent(value -> model.addAttribute("movie", value));
         return "filmPage";
     }
 

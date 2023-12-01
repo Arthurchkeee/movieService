@@ -60,6 +60,10 @@
                                         <h6 class="mb-0">7.50</h6>
                                         <p class="uppercase font-bold text-sm">IMDb</p>
                                     </div>
+                                    <div>
+                                        <h6 class="mb-0">${movie.rating}</h6>
+                                        <p class="uppercase font-bold text-sm">Users Mark</p>
+                                    </div>
                                 </div>
                                 <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
                                     fugiat
@@ -241,6 +245,40 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+    <section>
+        <div class="content p-4 grid bg-white u-round-sm u-shadow-lg">
+            <#if reviews?has_content>
+                <#list reviews as review>
+                    <div class="card grid-c-12 grid-r-12 bg-orange-300 u-round-sm u-shadow-lg">
+                        <div class="card__header">
+                            <div class="row">
+                                <div class="col-11">
+                                    <p class="font-bold px-3">${review.title}</p>
+                                </div>
+                                <div class="col-1">
+                                    <p class="font-bold ps-4">${review.mark}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <p>${review.textOfReview}</p>
+                        </div>
+                        <div class="card__footer level content">
+                            <a href="/user/${review.user.id}">
+                                ${review.user.username}
+                            </a>
+                        </div>
+                    </div>
+                </#list>
+            <#else>
+                <div class="u-text-center">
+                    <h5>Nobody sent their review. Will be first!</h5>
+                </div>
+            </#if>
+
+
         </div>
     </section>
     <section>
