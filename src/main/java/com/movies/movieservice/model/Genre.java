@@ -5,21 +5,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
+
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
 @Data
 @NoArgsConstructor
-@ToString
 @AllArgsConstructor
-@Document("roles")
-public class Role {
+@ToString
+@Document("genres")
+public class Genre {
     @MongoId
     private ObjectId id;
-    private ERole name;
-
-    public Role(ERole name) {
-        this.name = name;
-    }
+    private String name;
 }

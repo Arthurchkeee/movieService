@@ -4,15 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.springframework.data.annotation.Id;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @ToString
 @Data
@@ -20,17 +21,19 @@ import java.util.Set;
 @AllArgsConstructor
 @Document("Movie")
 public class Movie {
-    @Id
-    private String id;
+    @MongoId
+    private ObjectId id;
     private String title;
     private String description;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date releasedDate;
     private String year;
     private Set<String> director = new HashSet<>();
-    private Set<String> country = new HashSet<>();
+    @DBRef
+    private Set<Country> country = new HashSet<>();
     private Set<String> writer = new HashSet<>();
-    private Set<String> genre = new HashSet<>();
+    @DBRef
+    private Set<Genre> genre = new HashSet<>();
     private Set<String> producer = new HashSet<>();
     private Set<String> operator = new HashSet<>();
     private Set<String> composer = new HashSet<>();
@@ -40,4 +43,6 @@ public class Movie {
     private Long USAFees;
     private Long fees;
     private String filePath;
+    @Transient
+    private Double rating;
 }

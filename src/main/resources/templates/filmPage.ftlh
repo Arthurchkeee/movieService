@@ -1,3 +1,4 @@
+<#import "parts/header.ftlh" as h>
 <!DOCTYPE html>
 <html id="page">
 <head>
@@ -15,40 +16,9 @@
             integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="bg-yellow-100 min-h-100p">
-    <div class="header header-clear u-unselectable header-animated px-0 px-2-md">
-        <div class="header-brand">
-            <div class="nav-item no-hover">
-                <a href="/movies/findAllMovies">
-                    <h6 class="tracking-tight">WatchFlicks</h6>
-                </a>
-            </div>
-            <div class="nav-item nav-btn" id="header-btn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-        <div class="header-nav" id="header-menu">
-            <div class="nav-right text-sm">
-                <div class="nav-item">
-                    <a href="/movies/watchlist">Watchlist</a>
-                </div>
-                <div class="nav-item">
-                    <a href="#">About</a>
-                </div>
-                <div class="nav-item">
-                    <a href="#">Contact</a>
-                </div>
-                <div class="nav-item">
-                    <form action="/logout" method="post">
-                        <input class="btn btn-black btn--sm py-0" type="submit" value="Sign out"/>
-                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="bg-yellow-100">
+    <@h.header></@h.header>
+
     <section>
         <div class="hero">
             <div class="hero-body">
@@ -63,6 +33,12 @@
                             <p class="lead">${movie.description}</p>
                         </div>
                     </div>
+                    <div class="space"></div>
+                    <form action="/movies/addToWatchlist" method="post">
+                        <input class="btn btn-black btn--sm py-0" type="submit" value="Add to watchlist"/>
+                        <input type="hidden" name="movie" value="${movie.id}">
+                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                    </form>
                 </div>
             </div>
         </div>
@@ -84,6 +60,10 @@
                                         <h6 class="mb-0">7.50</h6>
                                         <p class="uppercase font-bold text-sm">IMDb</p>
                                     </div>
+                                    <div>
+                                        <h6 class="mb-0">${movie.rating}</h6>
+                                        <p class="uppercase font-bold text-sm">Users Mark</p>
+                                    </div>
                                 </div>
                                 <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
                                     fugiat
@@ -92,11 +72,6 @@
                         </div>
                     </div>
                 </div>
-                <form action="/movies/addToWatchlist" method="post">
-                    <input class="btn btn-black btn--sm py-0" type="submit" value="Add to watchlist"/>
-                    <input type="hidden" name="movie" value="${movie.id}">
-                    <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                </form>
                 <div>
                     <div class="frame__body">
                         <div class="px-2 py-2 bg-white u-round-sm u-shadow-lg">
@@ -116,9 +91,9 @@
                                         <div class="tag-container">
                                             <#list movie.country as country>
                                                 <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                    ${country}
+                                                    ${country.name}
                                                 </div>
-                                           </#list>
+                                            </#list>
                                         </div>
                                     </td>
                                 </tr>
@@ -128,7 +103,7 @@
                                         <div class="tag-container">
                                             <#list movie.genre as genre>
                                                 <div class="tag px-2 py-1 bg-dark text-white text-md font-bold uppercase">
-                                                    ${genre}
+                                                    ${genre.name}
                                                 </div>
                                             </#list>
                                         </div>
@@ -268,6 +243,81 @@
                             </table>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="content p-4 grid bg-white u-round-sm u-shadow-lg">
+            <#if reviews?has_content>
+                <#list reviews as review>
+                    <div class="card grid-c-12 grid-r-12 bg-orange-300 u-round-sm u-shadow-lg">
+                        <div class="card__header">
+                            <div class="row">
+                                <div class="col-11">
+                                    <p class="font-bold px-3">${review.title}</p>
+                                </div>
+                                <div class="col-1">
+                                    <p class="font-bold ps-4">${review.mark}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <p>${review.textOfReview}</p>
+                        </div>
+                        <div class="card__footer level content">
+                            <a href="/user/${review.user.id}">
+                                ${review.user.username}
+                            </a>
+                        </div>
+                    </div>
+                </#list>
+            <#else>
+                <div class="u-text-center">
+                    <h5>Nobody sent their review. Will be first!</h5>
+                </div>
+            </#if>
+
+
+        </div>
+    </section>
+    <section>
+        <div class="content">
+            <a href="#in-modal">
+                <button class="px-3">Zoom In</button>
+            </a>
+            <div class="modal  modal-animated--zoom-in" id="in-modal"><a href="#searchModalDialog"
+                                                                         class="modal-overlay close-btn"
+                                                                         aria-label="Close"></a>
+                <div class="modal-content" role="document">
+                    <div class="modal-header u-flex u-justify-space-between">
+                        <div class="modal-title">Modal Dialog</div>
+                        <a href="#components" aria-label="Close"><span class="icon"><svg aria-hidden="true"
+                                                                                         focusable="false"
+                                                                                         data-prefix="fas"
+                                                                                         data-icon="times"
+                                                                                         class="svg-inline--fa fa-times fa-w-11 fa-wrapper"
+                                                                                         role="img"
+                                                                                         xmlns="http://www.w3.org/2000/svg"
+                                                                                         viewBox="0 0 352 512"><path
+                                            fill="currentColor"
+                                            d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg></span></a>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/movies/sendReview" method="post">
+                            <input type="text" name="title">
+                            <textarea name="textOfReview"></textarea>
+                            <input type="hidden" name="movie" value="${movie.id}">
+                            <input type="range" name="mark" min="0" max="10" step="1">
+                            <input type="hidden" value="${_csrf.token}" name="_csrf">
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer u-text-right"><a href="#components" class="u-inline-block mr-1">
+                            <button class="btn--sm">Cancel</button>
+                        </a><a href="#components" class="u-inline-block">
+                            <button class="btn-primary btn--sm">Share</button>
+                        </a></div>
                 </div>
             </div>
         </div>

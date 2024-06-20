@@ -1,3 +1,4 @@
+<#import "parts/header.ftlh" as h>
 <!DOCTYPE html>
 <html id="page" lang="eng">
 <head>
@@ -16,61 +17,37 @@
 </head>
 <body class="bg-yellow-100">
 <div>
-    <div class="header header-clear u-unselectable header-animated px-0 px-2-md">
-        <div class="header-brand">
-            <div class="nav-item no-hover">
-                <a>
-                    <h6 class="tracking-tight">WatchFlicks</h6>
-                </a>
-            </div>
-            <div class="nav-item nav-btn" id="header-btn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-        <div class="header-nav" id="header-menu">
-            <div class="nav-right text-sm">
-                <div class="nav-item">
-                    <a href="/movies/watchlist">Watchlist</a>
-                </div>
-                <div class="nav-item">
-                    <a href="#">About</a>
-                </div>
-                <div class="nav-item">
-                    <a href="#">Contact</a>
-                </div>
-                <div class="nav-item">
-                    <form action="/logout" method="post">
-                        <input class="btn btn-black btn--sm py-0" type="submit" value="Sign out"/>
-                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    <@h.header></@h.header>
     <section>
         <div class="row">
             <div class="col-2">
                 <div class="p-2 grid u-text-center">
                     <div class="grid-c-12 grid-r-12">
-                        <div class="bg-white u-shadow-lg u-round-xs">
+                        <div class="bg-white u-shadow-lg u-round-xl">
                             <div class="p-3">
-                                <label for="genre"><p class="font-black">Genre</p></label>
-                                <select id="genre" name="genre">
-                                    <option>1
-                                    </option>
-                                    <option>2
-                                    </option>
-                                </select>
-                                <div class="space"></div>
-                                <label for="country"><p class="font-black">Country</p></label>
-                                <select id="country" name="country">
-                                    <option>1
-                                    </option>
-                                    <option>2
-                                    </option>
-                                </select>
+                                <form method="get" action="/movies/findMoviesByFilter">
+                                    <p class="font-black">Filter</p>
+                                    <details class="accordion">
+                                        <summary class="accordion__summary">Genre</summary>
+                                        <select onchange="this.form.submit()" class="u-round-md" id="genre" name="genreFilter">
+                                            <option value="" selected>select genre</option>
+                                            <#list genres as genre>
+                                                <option value="${genre.id.toHexString()}">${genre.name}
+                                                </option>
+                                            </#list>
+                                        </select>
+                                    </details>
+                                    <details class="accordion">
+                                        <summary class="accordion__summary">Country</summary>
+                                        <select onchange="this.form.submit()" class="u-round-md" id="country" name="countryFilter">
+                                            <option selected value="">select country</option>
+                                            <#list countries as country>
+                                                <option value="${country.id.toHexString()}">${country.name}
+                                                </option>
+                                            </#list>
+                                        </select>
+                                    </details>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -101,6 +78,7 @@
                                 </div>
                                 <div class="card__footer content"><#list movie.director as director>${director}</#list>
                                     <form method="post" action="/movies/delete" enctype="multipart/form-data">
+                                        <input type="hidden" value="${_csrf.token}" name="_csrf">
                                         <input type="hidden" name="id" value="${movie.id}">
                                         <button class="btn-primary">DELETE</button>
                                     </form>
@@ -111,7 +89,7 @@
                 </div>
             </div>
         </div>
-        =
     </section>
 </div>
+
 </body>
